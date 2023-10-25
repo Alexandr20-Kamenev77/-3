@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Vue.js Examples</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <link rel="stylesheet" href="style3.css">
+</head>
+<body>
+<div id="app">
+    <div class="container">
+        <div class="input-container">
+            <label for="age" class="input-field">Введення віку:</label>
+            <input id="age" v-model.number="age" type="number" class="input-field">
+            <p class="message-container" v-if="age !== ''">Age: {{ age }}</p>
+        </div>
+        <div class="input-container">
+            <label for="msg" class="input-field">Введення повідомлення зі затримкою:</label>
+            <input id="msg" v-model.lazy="msg" class="input-field">
+            <p class="message-container" v-if="msg !== ''">Message: {{ msg }}</p>
+        </div>
+        <div class="input-container">
+            <label for="message" class="input-field">Введення повідомлення з обрізаними пробілами:</label>
+            <input id="message" v-model.trim="message" class="input-field">
+            <p class="message-container" v-if="message !== ''">Trimmed Message: {{ message }}</p>
+        </div>
+    </div>
+</div>
+
+<div id="databinding">
+    <div v-bind:style="styleobj" v-on:mouseover="changebgcolor" v-on:mouseout="originalcolor" id="color-block"></div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            age: '',
+            msg: '',
+            message: ''
+        }
+    });
+
+    new Vue({
+        el: '#databinding',
+        data: {
+            styleobj: {
+                backgroundColor: "red"
+            }
+        },
+        methods: {
+            changebgcolor: function () {
+                this.styleobj.backgroundColor = "green";
+            },
+            originalcolor: function () {
+                this.styleobj.backgroundColor = "red";
+            }
+        }
+    });
+</script>
+</body>
+</html>
